@@ -1,16 +1,15 @@
+import { useContext } from 'react';
+import DataContext from './context/DataContext';
 import TeamCard from './TeamCard';
 import TeamSelection from './TeamSelection';
 
-const Employees = ({employees, selectedTeam, handleTeamSelectionChange, handleEmployeeCardClick}) => {
-  
+const Employees = () => {
+  const {employees} = useContext(DataContext);
   return (
     <main className="container">
       <div className="row justify-content-center mt-3 mb-3">
         <div className="col-6">
-          <TeamSelection 
-            selectedTeam={selectedTeam}
-            handleTeamSelectionChange={handleTeamSelectionChange}
-          />
+          <TeamSelection />
         </div>
       </div>
       
@@ -22,8 +21,6 @@ const Employees = ({employees, selectedTeam, handleTeamSelectionChange, handleEm
                 <TeamCard 
                   key={employee.id}
                   employee={employee}
-                  selectedTeam={selectedTeam}
-                  handleEmployeeCardClick={handleEmployeeCardClick}
                 />
               ))
             }
