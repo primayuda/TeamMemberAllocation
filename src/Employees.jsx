@@ -1,6 +1,5 @@
-
-import femaleProfile from './images/femaleProfile.jpg';
-import maleProfile from './images/maleProfile.jpg';
+import TeamCard from './TeamCard';
+import TeamSelection from './TeamSelection';
 
 const Employees = ({employees, selectedTeam, handleTeamSelectionChange, handleEmployeeCardClick}) => {
   
@@ -8,16 +7,10 @@ const Employees = ({employees, selectedTeam, handleTeamSelectionChange, handleEm
     <main className="container">
       <div className="row justify-content-center mt-3 mb-3">
         <div className="col-6">
-          <select 
-            className="form-select form-select-lg" 
-            value={selectedTeam}
-            onChange={handleTeamSelectionChange}
-          >
-            <option value="TeamA">TeamA</option>
-            <option value="TeamB">TeamB</option>
-            <option value="TeamC">TeamC</option>
-            <option value="TeamD">TeamD</option>
-          </select>
+          <TeamSelection 
+            selectedTeam={selectedTeam}
+            handleTeamSelectionChange={handleTeamSelectionChange}
+          />
         </div>
       </div>
       
@@ -26,23 +19,11 @@ const Employees = ({employees, selectedTeam, handleTeamSelectionChange, handleEm
           <div className="card-collection">
             {
               employees.map(employee => (
-                <div 
-                  key={employee.id}
-                  id={employee.id} 
-                  className={employee.teamName === selectedTeam ? "card m-2 standout":"card m-2"} 
-                  style={{ cursor: "pointer"}}
-                  onClick={handleEmployeeCardClick}
-                >
-                  <img 
-                    src={employee.gender === "female" ? femaleProfile : maleProfile}                                    className="card-img-top" 
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Full Name: {employee.fullName}</h5>
-                    <p className="card-text">
-                      <b>Designation: </b>{employee.designation}
-                    </p>
-                  </div>
-                </div>
+                <TeamCard 
+                  employee={employee}
+                  selectedTeam={selectedTeam}
+                  handleEmployeeCardClick={handleEmployeeCardClick}
+                />
               ))
             }
           </div>
