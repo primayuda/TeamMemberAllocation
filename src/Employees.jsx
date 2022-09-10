@@ -20,6 +20,7 @@ const Employees = ({employees, selectedTeam, handleTeamSelectionChange, handleEm
             {
               employees.map(employee => (
                 <TeamCard 
+                  key={employee.id}
                   employee={employee}
                   selectedTeam={selectedTeam}
                   handleEmployeeCardClick={handleEmployeeCardClick}
